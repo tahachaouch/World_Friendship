@@ -21,6 +21,11 @@ public class Reponse {
     public Reponse() {
     }
 
+    public Reponse(String contenu_reponse) {
+        this.contenu_reponse = contenu_reponse;
+    }
+
+    
     public Reponse(int id_reponse) {
         this.id_reponse = id_reponse;
     }

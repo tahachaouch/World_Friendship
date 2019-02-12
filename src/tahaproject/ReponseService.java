@@ -24,6 +24,7 @@ public class ReponseService {
         
     }
     
+ 
     void ajouterReponse(Reponse r) {
          try {
              
@@ -64,7 +65,7 @@ public class ReponseService {
          }
     }
     
-    
+   
     ArrayList<Reponse> getAllReponses() throws SQLException {
        ArrayList<Reponse> retour = new ArrayList<>();
        Statement stm = cnx.createStatement();
@@ -85,4 +86,73 @@ public class ReponseService {
     
    }
     
+    
+    void AfficherReponsesCompletSansTri() throws SQLException
+    {
+       Statement stm = cnx.createStatement();
+        String req = "SELECT date_reponse,contenu_reponse,rate,unrate,username FROM reponse join fos_user on reponse.id=fos_user.id join rating on reponse.id_reponse=rating.id_reponse WHERE etat_reponse=1";
+        ResultSet resultat = stm.executeQuery(req);
+       while(resultat.next()){
+ 
+       String date_reponse= resultat.getString("date_reponse");
+       System.out.println(date_reponse);
+       String contenu_reponse= resultat.getString("contenu_reponse");
+       System.out.println(contenu_reponse);
+       String username= resultat.getString("username");
+       System.out.println(username);
+       int rate=resultat.getInt("rate");
+       System.out.println(rate);
+       int unrate=resultat.getInt("unrate");
+       System.out.println(unrate);
+       
+
+
+            
+        }
+    
+    }
+    
+    
+    
+    
+    void AfficherReponsesAvecTriRate() throws SQLException
+    {
+       Statement stm = cnx.createStatement();
+        String req = "SELECT date_reponse,contenu_reponse,rate,unrate,username FROM reponse join fos_user on reponse.id=fos_user.id join rating on reponse.id_reponse=rating.id_reponse WHERE etat_reponse=1 ORDER BY rating.rate DESC";
+        ResultSet resultat = stm.executeQuery(req);
+       while(resultat.next()){
+ 
+       String date_reponse= resultat.getString("date_reponse");
+       System.out.println(date_reponse);
+       String contenu_reponse= resultat.getString("contenu_reponse");
+       System.out.println(contenu_reponse);
+       String username= resultat.getString("username");
+       System.out.println(username);
+       int rate=resultat.getInt("rate");
+       System.out.println(rate);
+       int unrate=resultat.getInt("unrate");
+       System.out.println(unrate);
+       
+
+
+            
+        }
+    
+    
+    
+    
+    
+            
+    
+    
+    
+    
+    
+    
+    
+}
+    
+
+
+
 }

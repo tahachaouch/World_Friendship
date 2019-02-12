@@ -60,6 +60,14 @@ void supprimerQuestion(Question q) {
              PreparedStatement pstm = cnx.prepareStatement(req);
              pstm.setInt(1, q.getId_question());
              pstm.executeUpdate();
+             
+             
+             String req2 = "UPDATE reponse set etat_reponse=0 WHERE id_question=?";
+             PreparedStatement pstm2 = cnx.prepareStatement(req2);
+             pstm2.setInt(1, q.getId_question());
+             pstm2.executeUpdate();
+             
+             
          } catch (SQLException ex) {
              Logger.getLogger(QuestionService.class.getName()).log(Level.SEVERE, null, ex);
          }
@@ -89,6 +97,7 @@ void supprimerQuestion(Question q) {
         ResultSet resultat = stm.executeQuery(req);
         while(resultat.next()){
            int id= resultat.getInt("id");
+         //  System.out.println(id);
            int id_question= resultat.getInt("id_question");
            String date_question= resultat.getString("date_question");
            String titre_question = resultat.getString("titre_question");
@@ -101,6 +110,68 @@ void supprimerQuestion(Question q) {
         return retour;
     
    }
+   
+   
+   
+   void afficherQuestionsComplet() throws SQLException
+   {    
+        int i=0;
+        Statement stm = cnx.createStatement();
+        Statement stm1 = cnx.createStatement();
+        String req = "SELECT id_question,titre_question,date_question,username FROM question join fos_user on question.id=fos_user.id WHERE etat_question=1";
+        ResultSet resultat = stm.executeQuery(req);
+        while(resultat.next()){
+ 
+       
+       String titre_question= resultat.getString("titre_question");
+       System.out.println(titre_question);
+       String date_question= resultat.getString("date_question");
+       System.out.println(date_question);
+       String username= resultat.getString("username");
+       System.out.println(username);
+       
+       //Calculer le nombre de commentaires pour chaque question.
+       int id_question= resultat.getInt("id_question");
+       String req1 = "SELECT id_reponse FROM reponse WHERE reponse.id_question="+id_question+" ";
+       ResultSet resultat1 = stm1.executeQuery(req1);
+       while(resultat1.next())
+       {
+         i++;
+       }
+       System.out.println("Nbr de Commentaire: "+i);
+       
+       
+       
+       
+            
+        }
+        
+        
+       
+    }
+   
+   
+   void afficherQuestionsUser(int id) throws SQLException
+   {
+        Statement stm = cnx.createStatement();
+        String req = "SELECT titre_question,date_question,username FROM question join fos_user on question.id=fos_user.id WHERE etat_question=1 AND question.id="+id+"";
+        ResultSet resultat = stm.executeQuery(req);
+        while(resultat.next()){
+ 
+       
+       String titre_question= resultat.getString("titre_question");
+       System.out.println(titre_question);
+       String date_question= resultat.getString("date_question");
+       System.out.println(date_question);
+       String username= resultat.getString("username");
+       System.out.println(username);
+
+            
+        }
+       
+    }
+           
+   
    
    
    

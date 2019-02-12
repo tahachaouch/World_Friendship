@@ -1,5 +1,5 @@
 package tahaproject;
-
+import java.util.*;
 import java.util.Date;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
@@ -22,6 +22,8 @@ public class Question {
 
     public Question() {
     }
+
+    
 
 
     
@@ -135,11 +137,9 @@ public class Question {
         this.etat_question = etat;
     }
 
-    @Override
-    public String toString() {
-        return "Question{" + "id=" + id + ", id_question=" + id_question + ", date_question=" + date_question + ", titre_question=" + titre_question + ", contenu_question=" + contenu_question + ", etat=" + etat_question + '}';
-    }
 
+
+    
     
     
 
