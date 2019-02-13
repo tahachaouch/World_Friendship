@@ -145,10 +145,85 @@ void supprimerQuestion(Question q) {
        
             
         }
-        
-        
-       
+           
     }
+   
+   
+   
+   
+      void afficherQuestionsCompletTri(String critere) throws SQLException
+   {    
+        int i=0;
+        Statement stm = cnx.createStatement();
+        Statement stm1 = cnx.createStatement();
+        String req = "SELECT id_question,titre_question,date_question,username FROM question join fos_user on question.id=fos_user.id WHERE etat_question=1 ORDER BY '"+critere+"'";
+        ResultSet resultat = stm.executeQuery(req);
+        while(resultat.next()){
+ 
+       
+       String titre_question= resultat.getString("titre_question");
+       System.out.println(titre_question);
+       String date_question= resultat.getString("date_question");
+       System.out.println(date_question);
+       String username= resultat.getString("username");
+       System.out.println(username);
+       
+       //Calculer le nombre de commentaires pour chaque question.
+       int id_question= resultat.getInt("id_question");
+       String req1 = "SELECT id_reponse FROM reponse WHERE reponse.id_question="+id_question+" ";
+       ResultSet resultat1 = stm1.executeQuery(req1);
+       while(resultat1.next())
+       {
+         i++;
+       }
+       System.out.println("Nbr de Commentaire: "+i);
+       
+       
+       
+       
+            
+        }
+           
+    }
+      
+       void afficherQuestionsCompletRecherche(String mot) throws SQLException
+   {    
+        int i=0;
+        Statement stm = cnx.createStatement();
+        Statement stm1 = cnx.createStatement();
+        String req = "SELECT id_question,titre_question,date_question,username FROM question join fos_user on question.id=fos_user.id WHERE etat_question=1 AND (titre_question LIKE '%"+mot+"%' OR fos_user.username LIKE '%"+mot+"%')";
+        ResultSet resultat = stm.executeQuery(req);
+        while(resultat.next()){
+ 
+       
+       String titre_question= resultat.getString("titre_question");
+       System.out.println(titre_question);
+       String date_question= resultat.getString("date_question");
+       System.out.println(date_question);
+       String username= resultat.getString("username");
+       System.out.println(username);
+       
+       //Calculer le nombre de commentaires pour chaque question.
+       int id_question= resultat.getInt("id_question");
+       String req1 = "SELECT id_reponse FROM reponse WHERE reponse.id_question="+id_question+" ";
+       ResultSet resultat1 = stm1.executeQuery(req1);
+       while(resultat1.next())
+       {
+         i++;
+       }
+       System.out.println("Nbr de Commentaire: "+i);
+       
+       
+       
+       
+            
+        }
+           
+    }
+   
+   
+   
+   
    
    
    void afficherQuestionsUser(int id) throws SQLException

@@ -115,10 +115,10 @@ public class ReponseService {
     
     
     
-    void AfficherReponsesAvecTriRate() throws SQLException
+    void AfficherReponsesAvecTriRate(int id_question) throws SQLException
     {
        Statement stm = cnx.createStatement();
-        String req = "SELECT date_reponse,contenu_reponse,rate,unrate,username FROM reponse join fos_user on reponse.id=fos_user.id join rating on reponse.id_reponse=rating.id_reponse WHERE etat_reponse=1 ORDER BY rating.rate DESC";
+        String req = "SELECT date_reponse,contenu_reponse,rate,unrate,username FROM reponse join fos_user on reponse.id=fos_user.id join rating on reponse.id_reponse=rating.id_reponse WHERE etat_reponse=1 AND reponse.id_question='"+id_question+"' ORDER BY rating.rate DESC";
         ResultSet resultat = stm.executeQuery(req);
        while(resultat.next()){
  

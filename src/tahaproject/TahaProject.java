@@ -72,7 +72,9 @@ public class TahaProject {
    // qs.afficherQuestions(123);
   // rs.AfficherReponsesAvecTriRate();
   //qs.afficherQuestionsUser(123);
-  qs.afficherQuestionsComplet();
+  //qs.afficherQuestionsComplet();
+ // qs.afficherQuestionsCompletRecherche("k");
+ rs.AfficherReponsesAvecTriRate(35);
     }
     
 }
