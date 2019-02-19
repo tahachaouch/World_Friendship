@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="worldfriendship.Controllers.ShowEventController">
+   <children>
+      <Label fx:id="title" layoutX="52.0" layoutY="43.0" prefHeight="17.0" prefWidth="176.0" text="label" />
+      <Label fx:id="discription" layoutX="52.0" layoutY="90.0" text="Label" />
+      <Label fx:id="adresseE" layoutX="52.0" layoutY="139.0" text="Label" />
+      <Label fx:id="typeE" layoutX="52.0" layoutY="183.0" text="Label" />
+      <Label fx:id="nbrplace" layoutX="52.0" layoutY="225.0" text="Label" />
+      <Label fx:id="typeH" layoutX="286.0" layoutY="35.0" text="Label" />
+      <Label fx:id="adresseH" layoutX="286.0" layoutY="90.0" text="Label" />
+      <Label fx:id="startD" layoutX="286.0" layoutY="139.0" text="Label" />
+      <Label fx:id="endD" layoutX="286.0" layoutY="183.0" text="Label" />
+      <Button fx:id="delete" layoutX="411.0" layoutY="291.0" mnemonicParsing="false" onAction="#deleteEvent" text="Remove" />
+   </children>
+</AnchorPane>

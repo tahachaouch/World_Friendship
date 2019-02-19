@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="worldfriendship.Controllers.AddEventController">
+   <children>
+      <TextField fx:id="title" layoutX="43.0" layoutY="26.0" promptText="Taper un titre" />
+      <TextArea fx:id="description" layoutX="43.0" layoutY="63.0" prefHeight="127.0" prefWidth="242.0" promptText="description" />
+      <DatePicker fx:id="dateS" layoutX="363.0" layoutY="92.0" promptText="start date" />
+      <DatePicker fx:id="dateE" layoutX="363.0" layoutY="134.0" promptText="end date" />
+      <TextField fx:id="adresseE" layoutX="43.0" layoutY="210.0" prefHeight="25.0" prefWidth="142.0" promptText="adresse" />
+      <TextField fx:id="nbrPlace" layoutX="192.0" layoutY="210.0" prefHeight="25.0" prefWidth="95.0" promptText="nombre places" />
+      <TextField fx:id="typeHbergement" layoutX="43.0" layoutY="287.0" prefHeight="25.0" prefWidth="142.0" promptText="type hebergement" />
+      <TextField fx:id="adresseHebergement" layoutX="43.0" layoutY="329.0" prefHeight="25.0" prefWidth="181.0" promptText="adresse hebergement" />
+      <Button fx:id="ajouterB" layoutX="450.0" layoutY="329.0" mnemonicParsing="false" onAction="#addEvent" prefHeight="25.0" prefWidth="95.0" text="Ajouter" />
+      <TextField fx:id="typeEvent" layoutX="43.0" layoutY="246.0" prefHeight="25.0" prefWidth="142.0" promptText="type event" />
+   </children>
+</AnchorPane>
