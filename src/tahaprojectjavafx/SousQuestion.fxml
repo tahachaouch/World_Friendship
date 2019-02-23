@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="550.0" prefWidth="770.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tahaprojectjavafx.SousQuestionController">
+   <children>
+      <TextField fx:id="titre" layoutX="32.0" layoutY="23.0" prefHeight="25.0" prefWidth="204.0" />
+      <TextField fx:id="date" layoutX="32.0" layoutY="80.0" prefHeight="25.0" prefWidth="424.0" />
+      <TextArea fx:id="contenu" layoutX="34.0" layoutY="116.0" prefHeight="140.0" prefWidth="705.0" />
+      <TableView fx:id="table" layoutX="35.0" layoutY="269.0" prefHeight="200.0" prefWidth="705.0">
+        <columns>
+          <TableColumn fx:id="dateColumn" prefWidth="154.0" text="Date_Reponse" />
+          <TableColumn fx:id="usernameColumn" prefWidth="114.0" text="Username" />
+            <TableColumn fx:id="contenuColumn" minWidth="0.0" prefWidth="338.0" text="Contenu_Reponse" />
+            <TableColumn fx:id="likesColumn" prefWidth="46.0" text="likes" />
+            <TableColumn fx:id="unlikesColumn" prefWidth="53.0" text="dislikes" />
+            <TableColumn fx:id="idColumn" maxWidth="0.0" minWidth="0.0" prefWidth="0.0" text="ID" />
+        </columns>
+      </TableView>
+      <Button fx:id="btn1" layoutX="111.0" layoutY="502.0" mnemonicParsing="false" onAction="#ModifierQuestion" prefHeight="34.0" prefWidth="133.0" text="Modifier Ma Question" />
+      <Button fx:id="btn2" layoutX="521.0" layoutY="502.0" mnemonicParsing="false" onAction="#ConsulterReponse" prefHeight="34.0" prefWidth="133.0" text="Consulter Reponse" />
+      <Button fx:id="btn3" layoutX="667.0" layoutY="19.0" mnemonicParsing="false" onAction="#RetourMesQuestionButtonAction" prefHeight="25.0" prefWidth="89.0" text="Retour" />
+      <Button fx:id="btn4" layoutX="319.0" layoutY="502.0" mnemonicParsing="false" onAction="#AjouterReponse" prefHeight="34.0" prefWidth="133.0" text="Ajouter une Reponse" />
+   </children>
+</AnchorPane>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="550.0" prefWidth="770.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tahaprojectjavafx.SousReponseController">
+   <children>
+      <TextField fx:id="date" layoutX="29.0" layoutY="77.0" prefHeight="25.0" prefWidth="197.0" />
+      <TextField fx:id="username" layoutX="29.0" layoutY="115.0" prefHeight="25.0" prefWidth="197.0" />
+      <TextArea fx:id="contenu" layoutX="28.0" layoutY="151.0" prefHeight="257.0" prefWidth="627.0" />
+      <Button fx:id="btn1" layoutX="523.0" layoutY="424.0" mnemonicParsing="false" onAction="#Good" prefHeight="25.0" prefWidth="50.0" text="Good" />
+      <Button fx:id="btn2" layoutX="615.0" layoutY="424.0" mnemonicParsing="false" onAction="#Bad" prefHeight="25.0" prefWidth="40.0" text="Bad" />
+      <Button fx:id="btn3" layoutX="39.0" layoutY="486.0" mnemonicParsing="false" onAction="#retour" prefHeight="25.0" prefWidth="146.0" text="Retour" />
+      <TextField fx:id="G" layoutX="493.0" layoutY="424.0" prefHeight="25.0" prefWidth="24.0" />
+      <TextField fx:id="B" layoutX="584.0" layoutY="424.0" prefHeight="25.0" prefWidth="24.0" />
+   </children>
+</AnchorPane>
