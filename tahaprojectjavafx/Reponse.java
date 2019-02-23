@@ -22,7 +22,17 @@ public class Reponse {
     String username;
     
     
-    
+   public Reponse(int id,int id_reponse,String date_reponse,String contenu_reponse,int rate,int unrate,String username) 
+   {
+       this.id=id;
+       this.id_reponse=id_reponse;
+       this.date_reponse=date_reponse;
+       this.contenu_reponse=contenu_reponse;
+       this.rate=rate;
+       this.unrate=unrate;
+       this.username=username;
+   
+   }
     
   public Reponse(int id_reponse,String date_reponse,String contenu_reponse,String username)
   {

@@ -7,10 +7,7 @@ package tahaprojectjavafx;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -30,7 +27,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 /**
@@ -38,12 +34,9 @@ import javafx.stage.Stage;
  *
  * @author arthas
  */
-public class SousQuestionController implements Initializable {
+public class SousQuestionNUController implements Initializable {
 
- 
-        
-    
-    @FXML
+ @FXML
     private TableView<Reponse> table;
     @FXML
     private TableColumn<Reponse,String> dateColumn;
@@ -53,6 +46,8 @@ public class SousQuestionController implements Initializable {
     private TableColumn<Reponse,String> contenuColumn;
     @FXML
     private TableColumn<Reponse,Integer> idColumn;
+    @FXML
+    private TableColumn<Reponse,Integer> iduColumn;
     @FXML
     private TableColumn<Reponse,Integer> likesColumn;
     @FXML
@@ -69,16 +64,15 @@ public class SousQuestionController implements Initializable {
     private Button btn2;
     @FXML
     private Button btn3;
+
+    
+    
+    
     @FXML
-    private Button btn4;
-    
-    
-    
-        @FXML
-private void RetourMesQuestionButtonAction(ActionEvent event) throws IOException
+private void RetourAcceuilButtonAction(ActionEvent event) throws IOException
 {
     try {
-        Parent home_page_parent = FXMLLoader.load(getClass().getResource("MesQuestions.fxml"));
+        Parent home_page_parent = FXMLLoader.load(getClass().getResource("Acceuil.fxml"));
         Scene home_page_scene = new Scene(home_page_parent);
         Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         app_stage.setScene(home_page_scene);
@@ -89,26 +83,8 @@ private void RetourMesQuestionButtonAction(ActionEvent event) throws IOException
     }
   
 }
-
-
-
-
- @FXML
-private void ModifierQuestion(ActionEvent event) throws IOException
-{
-    try {
-        Parent home_page_parent = FXMLLoader.load(getClass().getResource("ModifierQuestion.fxml"));
-        Scene home_page_scene = new Scene(home_page_parent);
-        Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        app_stage.setScene(home_page_scene);
-        app_stage.show();
-        
-    } catch (IOException ex) {
-        Logger.getLogger(MesQuestionsController.class.getName()).log(Level.SEVERE, null, ex);
-    }
-  
-}
-
+    
+    
 
 @FXML
 private void AjouterReponse(ActionEvent event) throws IOException
@@ -125,9 +101,7 @@ private void AjouterReponse(ActionEvent event) throws IOException
     }
   
 }
-
-
-
+    
 @FXML
 private void ConsulterReponse(ActionEvent event) throws IOException
 {
@@ -136,9 +110,9 @@ private void ConsulterReponse(ActionEvent event) throws IOException
         
        UtiliseObjetService obs=new UtiliseObjetService();
        obs.setidreponsedb(reponse.getId_reponse());
+      // System.out.println(reponse.getId());
        
-       
-        if(reponse.getId()==obs.getiduserdb().get(0).getId_userdb())
+      if(reponse.getId()==obs.getiduserdb().get(0).getId_userdb())
       { Parent home_page_parent = FXMLLoader.load(getClass().getResource("ModifierReponse.fxml"));
         Scene home_page_scene = new Scene(home_page_parent);
         Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -154,7 +128,6 @@ private void ConsulterReponse(ActionEvent event) throws IOException
         app_stage.show();
       
       }
-
         
     } catch (IOException ex) {
         Logger.getLogger(MesQuestionsController.class.getName()).log(Level.SEVERE, null, ex);
@@ -163,57 +136,72 @@ private void ConsulterReponse(ActionEvent event) throws IOException
         }
   
 }
-    
-    
-    
+ 
+
+
+
+
+
+
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-      try {
-           // UtileObjets UO= new UtileObjets();
-            QuestionService qs = new QuestionService();
-           // ArrayList<Question> questions;
-           UtiliseObjetService obs=new UtiliseObjetService();
-           
-            
-            
-            Question q=  qs.afficherQuestionParId(obs.getidquestiondb().get(0).getId_questiondb());
-           // System.out.println(obs.getidquestiondb().get(0).getId_questiondb());
-            titre.setText(q.getTitre_question());
-            titre.setEditable(false);
-            date.setText(q.getDate_question());;
-            date.setEditable(false);
-           contenu.setText(q.getContenu_question());
-           contenu.setEditable(false);
-           
-           //affichage des reponses pour la question à consulter
-           
-           ReponseService rs = new ReponseService();
-           ArrayList<Reponse> reponses;
-             
-          
+     try {
+
+         QuestionService qs = new QuestionService();
+         UtiliseObjetService obs=new UtiliseObjetService();
          
- 
-  //System.out.println(rs.Calculunrate(2));
-           
-           
+         
+         
+         Question q=  qs.afficherQuestionParId(obs.getidquestiondb().get(0).getId_questiondb());
+
+         titre.setText(q.getTitre_question());
+         titre.setEditable(false);
+         date.setText(q.getDate_question());;
+         date.setEditable(false);
+         contenu.setText(q.getContenu_question());
+         contenu.setEditable(false);
+         
+         //affichage des reponses pour la question à consulter
+         
+        
+         ReponseService rs = new ReponseService();
+         ArrayList<Reponse> reponses;
+         
+         
+         
+         System.out.println(obs.getidquestiondb().get(0).getId_questiondb());
+         
         reponses = (ArrayList<Reponse>) rs.AfficherReponsesAvecTriRate(obs.getidquestiondb().get(0).getId_questiondb());
-        ObservableList obss = FXCollections.observableArrayList(reponses);
-           table.setItems(obss);
-           dateColumn.setCellValueFactory(new PropertyValueFactory<>("date_reponse"));
-           usernameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
-           contenuColumn.setCellValueFactory(new PropertyValueFactory<>("contenu_reponse"));
-           likesColumn.setCellValueFactory(new PropertyValueFactory<>("rate"));
-           unlikesColumn.setCellValueFactory(new PropertyValueFactory<>("unrate"));
-           idColumn.setCellValueFactory(new PropertyValueFactory<>("id_reponse"));
+         ObservableList obss = FXCollections.observableArrayList(reponses);
+         table.setItems(obss);
+           //System.out.println(obs.getidquestiondb().get(0).getId_questiondb());
+         dateColumn.setCellValueFactory(new PropertyValueFactory<>("date_reponse"));
+         usernameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
+         contenuColumn.setCellValueFactory(new PropertyValueFactory<>("contenu_reponse"));
+         likesColumn.setCellValueFactory(new PropertyValueFactory<>("rate"));
+         unlikesColumn.setCellValueFactory(new PropertyValueFactory<>("unrate"));
+         idColumn.setCellValueFactory(new PropertyValueFactory<>("id_reponse"));
+         iduColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+         
+         // System.out.println(reponses.get(0).get);
+     } catch (SQLException ex) {
+         Logger.getLogger(SousQuestionNUController.class.getName()).log(Level.SEVERE, null, ex);
+     }
            
-          // System.out.println(reponses.get(0).get);
            
-           
-        } catch (SQLException ex) {
-            Logger.getLogger(SousQuestionController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-       
-    }    
-    
+        
+    }   
+
+
+
+
+
+
+
+
+
+
 }
+    
+

@@ -35,6 +35,8 @@ public class AcceuilController implements Initializable {
 @FXML
     private TableColumn<Question,Integer> idColumn;
 @FXML
+    private TableColumn<Question,Integer> iduColumn;
+@FXML
     private TableColumn<Question,String> userColumn;
 @FXML
     private TableColumn<Question,String> titreColumn;
@@ -105,6 +107,46 @@ private void MesQuestionButtonAction(ActionEvent event) throws IOException
   
 } 
     
+
+
+@FXML
+private void ConsulterQuestionAcceuil(ActionEvent event) throws IOException
+{
+    try {
+        // UtileObjets UO;
+        
+        
+        
+        Question question= table.getSelectionModel().getSelectedItem();
+        //UO.(question.getId_question());
+        /*UtileObjet ob =new UtileObjet();
+        UtiliseObjetService obs=new UtiliseObjetService();
+        obs.setidquestiondb(question.getId_question());*/
+        UtiliseObjetService obs=new UtiliseObjetService();
+       obs.setidquestiondb(question.getId_question());
+      //  System.out.println(question.getId_question());
+       // System.out.println(question.getId());
+        if(question.getId()==obs.getiduserdb().get(0).getId_userdb())
+        {Parent home_page_parent = FXMLLoader.load(getClass().getResource("SousQuestion.fxml"));
+        Scene home_page_scene = new Scene(home_page_parent);
+        Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        app_stage.setScene(home_page_scene);
+        app_stage.show();}
+        else
+        {
+        Parent home_page_parent = FXMLLoader.load(getClass().getResource("SousQuestionNU.fxml"));
+        Scene home_page_scene = new Scene(home_page_parent);
+        Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        app_stage.setScene(home_page_scene);
+        app_stage.show();
+        }
+    } catch (SQLException ex) {
+        Logger.getLogger(MesQuestionsController.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    
+    
+
+}
     
     
     @Override
@@ -113,9 +155,16 @@ private void MesQuestionButtonAction(ActionEvent event) throws IOException
             QuestionService qs = new QuestionService();
             ArrayList<Question> questions;
             try {
+                /*QuestionService qss= new QuestionService();
+                    Question q=new Question();
+                   ArrayList<Question> questionss = qss.getAllQuestions();
+                   questionss.forEach(e->System.out.println(e));*/
+                   
                 questions = (ArrayList<Question>) qs.afficherQuestionsComplet();
                 ObservableList obs = FXCollections.observableArrayList(questions);
+               // System.out.println(obs);
                 table.setItems(obs);
+                iduColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
                 idColumn.setCellValueFactory(new PropertyValueFactory<>("id_question"));
                 userColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
                 titreColumn.setCellValueFactory(new PropertyValueFactory<>("titre_question"));

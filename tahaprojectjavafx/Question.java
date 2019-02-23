@@ -9,6 +9,7 @@ import java.util.Calendar;
  * @author arthas
  */
 public class Question {
+
     private int id;
     private int id_question;
     String date_question = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(Calendar.getInstance().getTime());
@@ -20,6 +21,20 @@ public class Question {
     private int etat_question;
     private String username;
     private int nbr_comment;
+        private String contenu_reponse;
+
+    @Override
+    public String toString() {
+        return "\nQuestion{\n" + "\ndate_question=" + date_question + "\ntitre_question=" + titre_question + "\ncontenu_question=" + contenu_question + "\ncontenu_reponse=" + contenu_reponse + '}'+"\n";
+    }
+
+    public String getContenu_reponse() {
+        return contenu_reponse;
+    }
+
+    public void setContenu_reponse(String contenu_reponse) {
+        this.contenu_reponse = contenu_reponse;
+    }
 
     public int getId() {
         return id;
@@ -88,7 +103,16 @@ public class Question {
 
 
 
-
+  public Question(int id,int id_question,String username,String titre_question,String date_question,int nbr_comment)
+  {
+    this.id=id;
+    this.id_question=id_question;
+    this.username=username;
+    this.titre_question=titre_question;
+    this.date_question=date_question;
+    this.nbr_comment=nbr_comment;
+      
+  }
   
 
 
@@ -128,7 +152,14 @@ public class Question {
    public Question(String username,String titre,String date,int nbr) {
     }
 
+    public Question(String date_question,String titre_question,String contenu_question,String contenu_reponse)
+    {
+        this.date_question=date_question;
+        this.titre_question=titre_question;
+        this.contenu_question=contenu_question;
+        this.contenu_reponse=contenu_reponse;
     
+    }
     
     public Question(int id,String date_question, String titre_question, String contenu_question) {
       this.id=id;
@@ -152,7 +183,7 @@ public class Question {
 
     
 
-    public Question(int id, int id_question, String date_question, String titre_question, String contenu_question, int etat) {
+   /* public Question(int id, int id_question, String date_question, String titre_question, String contenu_question, int etat) {
         this.id = id;
         this.id_question=id_question;
         this.date_question=date_question;
@@ -160,12 +191,17 @@ public class Question {
         this.contenu_question=contenu_question;
         this.etat_question=etat_question;
         
-    }
+    }*/
+    
 
-   public Question(int id_question, String titre_question, String contenu_question) {
-         this.id_question=id_question;
-         this.titre_question=titre_question;
-         this.contenu_question=contenu_question;
+
+
+
+
+    public Question(int id_question, String titre_question, String contenu_question) {
+        this.id_question=id_question;
+        this.titre_question=titre_question;
+        this.contenu_question=contenu_question;
     }
 
    

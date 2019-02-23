@@ -44,7 +44,7 @@ public class UtiliseObjetService {
             
         }*/
     
-       ArrayList<UtileObjet> getiduserdb() throws SQLException {
+     public  ArrayList<UtileObjet> getiduserdb() throws SQLException {
        ArrayList<UtileObjet> retour = new ArrayList<>();
        Statement stm = cnx.createStatement();
         String req = "select id_questiondb,id_reponsedb,id_userdb FROM utiliseobjet LIMIT 1";

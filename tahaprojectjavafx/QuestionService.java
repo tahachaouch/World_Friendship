@@ -115,12 +115,12 @@ void supprimerQuestion(Question q) {
    
    
    
-   ArrayList<Question> afficherQuestionsComplet() throws SQLException
+   public ArrayList<Question> afficherQuestionsComplet() throws SQLException
    {    ArrayList<Question> retour = new ArrayList<>();
         
         Statement stm = cnx.createStatement();
         Statement stm1 = cnx.createStatement();
-        String req = "SELECT id_question,titre_question,date_question,username FROM question join fos_user on question.id=fos_user.id WHERE etat_question=1";
+        String req = "SELECT question.id,id_question,titre_question,date_question,username FROM question join fos_user on question.id=fos_user.id WHERE etat_question=1";
         ResultSet resultat = stm.executeQuery(req);
         while(resultat.next()){
         int nbr_comment=0;
@@ -134,6 +134,7 @@ void supprimerQuestion(Question q) {
        
        //Calculer le nombre de commentaires pour chaque question.
        int id_question= resultat.getInt("id_question");
+       int id= resultat.getInt("id");
        String req1 = "SELECT id_reponse FROM reponse WHERE reponse.id_question="+id_question+" ";
        ResultSet resultat1 = stm1.executeQuery(req1);
        while(resultat1.next())
@@ -143,15 +144,34 @@ void supprimerQuestion(Question q) {
       // System.out.println("Nbr de Commentaire: "+nbr_comment);
        
        
-       retour.add(new Question(id_question,username,titre_question,date_question,nbr_comment));
+       retour.add(new Question(id,id_question,username,titre_question,date_question,nbr_comment));
        
             
         }
+
          return retour;  
     }
    
    
    
+   
+public ArrayList<Question> afficherQuestionPDF(int id) throws SQLException
+{
+     ArrayList<Question> retour = new ArrayList<>();
+     Statement stm = cnx.createStatement();
+     String req="SELECT date_question,titre_question,contenu_question,reponse.contenu_reponse FROM question JOIN reponse ON question.id_question=reponse.id_question  WHERE etat_question=1 AND question.id="+id+" ORDER BY titre_question";
+     ResultSet resultat = stm.executeQuery(req);
+     while(resultat.next()){
+     String date_question= resultat.getString("date_question");
+     String titre_question= resultat.getString("titre_question");
+     String contenu_question= resultat.getString("contenu_question");
+     String contenu_reponse= resultat.getString("contenu_reponse");
+     
+     retour.add(new Question(date_question,titre_question,contenu_question,contenu_reponse));
+     }
+     
+    return retour; 
+}
    
       void afficherQuestionsCompletTri(String critere) throws SQLException
    {    
@@ -228,7 +248,7 @@ void supprimerQuestion(Question q) {
    
    
    
-    ArrayList<Question> afficherQuestionsUser(int id) throws SQLException
+  public  ArrayList<Question> afficherQuestionsUser(int id) throws SQLException
    {    ArrayList<Question> retour = new ArrayList<>();
    
         Statement stm = cnx.createStatement();

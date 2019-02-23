@@ -18,14 +18,15 @@
          <children>
             <TableView fx:id="table" layoutX="21.0" layoutY="14.0" prefHeight="377.0" prefWidth="715.0">
               <columns>
-                <TableColumn fx:id="idColumn" minWidth="0.0" prefWidth="0.0" text="ID" />
-                <TableColumn fx:id="userColumn" prefWidth="137.0" text="Username" />
-                  <TableColumn fx:id="titreColumn" prefWidth="318.0" text="Titre" />
-                  <TableColumn fx:id="dateColumn" prefWidth="164.0" text="Date" />
-                  <TableColumn fx:id="nbrColumn" prefWidth="95.0" text="Nbr_Reponse" />
+                  <TableColumn fx:id="iduColumn" maxWidth="0.0" minWidth="0.0" prefWidth="0.0" text="IDU" />
+                <TableColumn fx:id="idColumn" maxWidth="0.0" minWidth="0.0" prefWidth="0.0" text="ID" />
+                <TableColumn fx:id="userColumn" prefWidth="177.0" text="Username" />
+                  <TableColumn fx:id="titreColumn" prefWidth="247.0" text="Titre" />
+                  <TableColumn fx:id="dateColumn" prefWidth="176.0" text="Date" />
+                  <TableColumn fx:id="nbrColumn" prefWidth="114.0" text="Nbr_Reponse" />
               </columns>
             </TableView>
-            <Button fx:id="btn" layoutX="322.0" layoutY="416.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="114.0" text="Consulter" />
+            <Button fx:id="btn" layoutX="322.0" layoutY="416.0" mnemonicParsing="false" onAction="#ConsulterQuestionAcceuil" prefHeight="36.0" prefWidth="114.0" text="Consulter" />
          </children>
       </AnchorPane>
    </children>

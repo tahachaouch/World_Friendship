@@ -146,7 +146,7 @@ public class ReponseService {
         ArrayList<Reponse> retour = new ArrayList<>();
         
         Statement stm = cnx.createStatement();
-        String req = "SELECT reponse.id_reponse,date_reponse,contenu_reponse,username FROM reponse join fos_user on reponse.id=fos_user.id  WHERE etat_reponse=1 AND reponse.id_question='"+id_question+"'";
+        String req = "SELECT reponse.id,reponse.id_reponse,date_reponse,contenu_reponse,username FROM reponse join fos_user on reponse.id=fos_user.id  WHERE etat_reponse=1 AND reponse.id_question='"+id_question+"'";
         ResultSet resultat = stm.executeQuery(req);
         while(resultat.next()){
  
@@ -154,12 +154,13 @@ public class ReponseService {
         String contenu_reponse= resultat.getString("contenu_reponse");
         String username= resultat.getString("username");
         int id_reponse=resultat.getInt("id_reponse");
+        int id=resultat.getInt("id");
         int rate=Calculrate(id_reponse);
         int unrate=Calculunrate(id_reponse);
 
        
 
-         retour.add(new Reponse(id_reponse,date_reponse,contenu_reponse,rate,unrate,username));
+         retour.add(new Reponse(id,id_reponse,date_reponse,contenu_reponse,rate,unrate,username));
             
         }
       return retour;

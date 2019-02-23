@@ -18,7 +18,7 @@
           <TableColumn fx:id="usernameColumn" prefWidth="114.0" text="Username" />
             <TableColumn fx:id="contenuColumn" minWidth="0.0" prefWidth="338.0" text="Contenu_Reponse" />
             <TableColumn fx:id="likesColumn" prefWidth="46.0" text="likes" />
-            <TableColumn fx:id="unlikesColumn" prefWidth="53.0" text="unlikes" />
+            <TableColumn fx:id="unlikesColumn" prefWidth="53.0" text="dislikes" />
             <TableColumn fx:id="idColumn" maxWidth="0.0" minWidth="0.0" prefWidth="0.0" text="ID" />
         </columns>
       </TableView>

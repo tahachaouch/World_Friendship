@@ -7,6 +7,7 @@ package tahaprojectjavafx;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -29,8 +30,8 @@ import javafx.stage.Stage;
  */
 public class AjouterReponseController implements Initializable {
 
- @FXML
-    private TextArea contenu;
+    @FXML
+    private TextArea c;
    @FXML
     private Button btn1;
    @FXML
@@ -52,6 +53,39 @@ private void SousQuestion(ActionEvent event) throws IOException
     }
   
 }
+
+
+       @FXML 
+       public void AjouterReponse(ActionEvent event) throws IOException {
+           Reponse reponse=new Reponse();
+             
+              try {
+                 ReponseService rs = new ReponseService();
+                 UtiliseObjetService obs =new UtiliseObjetService();
+             
+                 
+                 
+                 
+                reponse = new Reponse(obs.getiduserdb().get(0).getId_userdb(),obs.getiduserdb().get(0).getId_questiondb(),reponse.getDate_reponse(),c.getText());
+                   
+                 rs.ajouterReponse(reponse);
+                   //  Parent root= FXMLLoader.load(getClass().getResource("MesQuestions.fxml"));
+                   //   nom.getScene().setRoot(root);
+                   Parent home_page_parent = FXMLLoader.load(getClass().getResource("MesQuestions.fxml"));
+                    Scene home_page_scene = new Scene(home_page_parent);
+                    Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    app_stage.setScene(home_page_scene);
+                     app_stage.show();
+               } catch (SQLException ex) {
+                   Logger.getLogger(PublierQuestionController.class.getName()).log(Level.SEVERE, null, ex);
+               }
+                       
+         }
+
+
+
+
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
